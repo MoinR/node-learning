@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #fire {
+            background: black;
+            border: 0;
+            border-radius: 10px;
+            padding: 10px 20px;
+            color: aliceblue;
+        }
+
+        #body {
+            padding: 10px;
+            height: 100px;
+            border: 1px solid;
+        }
+
+
+        .circle {
+            height: 200px;
+            width: 200px;
+            border: 1px solid black;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: gray;
+        }
+
+        #age {
+            outline: none;
+        }
+
+        #errMsg {
+            font-size: 12px;
+            color: red;
+            display: block;
+        }
+
+        /* .circle:hover{ background: red; } */
+    </style>
+</head>
+
+<body>
+    <input type="number" id="age" value=0>
+    <span id="errMsg"> </span>
+    <!-- <div id="body">  </div> 
+<button id="fire"> Goli Fodo </button>  
+
+ -->
+    <div class="circle"> </div>
+    <div class="circle"> </div>
+    <div class="circle"> </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("age").addEventListener("change", function (event) {
+                console.log(event.target.value)
+                let inputElement = event.target;
+                if (inputElement.value < 18) {
+                    inputElement.style.borderColor = "red";
+                    document.getElementById('errMsg').innerHTML = "Abhi Tu Bachha He, Kal Aana dekh lenge"
+                } else {
+                    inputElement.style.borderColor = "black";
+                    document.getElementById('errMsg').innerHTML = ""
+                }
+            })
+
+            document.querySelectorAll(".circle").forEach(circle => {
+                circle.addEventListener("mouseover", event => {
+                    event.target.style.backgroundColor = 'red';
+                });
+                circle.addEventListener("mouseout", event => {
+                    event.target.style.backgroundColor = 'gray';
+                });
+            });
+        });
+
+
+
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://jsonplaceholder.typicode.com/posts", true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                console.log("Data received")
+                console.log(xhr.responseText);
+            }
+        };
+        xhr.send();
+
+    </script>
+</body>
+
+</html>
